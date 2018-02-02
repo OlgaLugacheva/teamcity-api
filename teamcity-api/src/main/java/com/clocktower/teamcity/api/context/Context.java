@@ -53,7 +53,7 @@ public class Context {
         });
 
         Map<String, List<String>> buildTypeIdsByParentProjectId =
-                buildTypes.stream().collect(Collectors.groupingBy(BuildType::getParentProjectId, Collectors.mapping(BuildType::getId, Collectors.toList())));
+                buildTypes.stream().collect(Collectors.groupingBy(BuildType::getProjectId, Collectors.mapping(BuildType::getId, Collectors.toList())));
         buildTypeTreeCache.getProjectsById().forEach((projectId, project) -> {
             List<String> buildTypeIds = buildTypeIdsByParentProjectId.get(projectId);
             project.setChildBuildTypeIds(buildTypeIds != null ? buildTypeIds : new ArrayList<>());
@@ -66,9 +66,9 @@ public class Context {
         GetProjectsResponseDto getProjectsResponseDto = restService.sendGetRequest("/projects", GetProjectsResponseDto.class);
         List<Project> projects = new ArrayList<>();
         for (ProjectDto projectDto : getProjectsResponseDto.getProject()) {
-            Project project = new Project(this);
-            project.setValuesFrom(projectDto);
-            projects.add(project);
+//            Project project = new Project(this);
+//            project.setValuesFrom(projectDto);
+//            projects.add(project);
         }
         return projects;
     }
@@ -77,9 +77,9 @@ public class Context {
         GetBuildTypesResponseDto getBuildTypesResponseDto = restService.sendGetRequest("/buildTypes", GetBuildTypesResponseDto.class);
         List<BuildType> buildTypes = new ArrayList<>();
         for (BuildTypeDto buildTypeDto : getBuildTypesResponseDto.getBuildType()) {
-            BuildType buildType = new BuildType(this);
-            buildType.setValuesFrom(buildTypeDto);
-            buildTypes.add(buildType);
+//            BuildType buildType = new BuildType(this);
+//            buildType.setValuesFrom(buildTypeDto);
+//            buildTypes.add(buildType);
         }
         return buildTypes;
     }

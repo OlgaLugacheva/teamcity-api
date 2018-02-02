@@ -41,7 +41,7 @@ public class RestServiceTest {
         when(httpClient.execute(any(HttpUriRequest.class))).thenReturn(httpResponse);
         when(responseParser.parseJsonResponse(httpResponse, String.class)).thenReturn("Some string");
 
-        RestService restService = new RestService("https://www.teamcity.com", httpClient, responseParser);
+        RestService restService = new RestService("https://www.teamcity.billing.ru", httpClient, responseParser);
         assertEquals("Some string", restService.sendGetRequest("/someResource", String.class));
     }
 
@@ -52,7 +52,7 @@ public class RestServiceTest {
         when(httpClient.execute(any(HttpUriRequest.class))).thenThrow(ConnectException.class);
         when(responseParser.parseJsonResponse(httpResponse, String.class)).thenReturn("Some string");
 
-        RestService restService = new RestService("https://www.teamcity.com", httpClient, responseParser);
+        RestService restService = new RestService("https://www.teamcity.billing.ru", httpClient, responseParser);
         restService.sendGetRequest("/someResource", String.class);
     }
 
@@ -63,7 +63,7 @@ public class RestServiceTest {
         when(httpClient.execute(any(HttpUriRequest.class))).thenReturn(httpResponse);
         when(responseParser.parseJsonResponse(httpResponse, String.class)).thenReturn("Some string");
 
-        RestService restService = new RestService("https://www.teamcity.com", httpClient, responseParser);
+        RestService restService = new RestService("https://www.teamcity.billing.ru", httpClient, responseParser);
         restService.sendGetRequest("/someResource", String.class);
     }
 }

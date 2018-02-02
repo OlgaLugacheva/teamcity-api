@@ -47,6 +47,6 @@ public class RestService {
     }
 
     private String createUri(String resourceUri) {
-        return teamCityUri + "/guestAuth" + "/app/rest" + resourceUri;
+        return teamCityUri + "/httpAuth" + "/app/rest" + resourceUri;
     }
 }
