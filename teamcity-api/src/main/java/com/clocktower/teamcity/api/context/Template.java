@@ -4,43 +4,64 @@ import com.clocktower.teamcity.api.context.impl.response.ProjectDto;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Project {
-//    private final Context context;
+public class Template {
 
     private String id;
-    private String parentProjectId;
+    private String projectId;
+    private String projectName;
+    private Boolean templateFlag;
+
+    public String getProjectName() {
+        return projectName;
+    }
+    @XmlAttribute
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Boolean getTemplateFlag() {
+        return templateFlag;
+    }
+    @XmlAttribute
+    public void setTemplateFlag(Boolean templateFlag) {
+        this.templateFlag = templateFlag;
+    }
+
     private String name;
     // private String description;
 
     private List<String> childProjectIds;
     private List<String> childBuildTypeIds;
 
-    public Project() {
-    }
 
     public void setValuesFrom(ProjectDto projectDto) {
         this.id = projectDto.getId();
         this.name = projectDto.getName();
-        this.parentProjectId = projectDto.getParentProjectId();
+        this.projectId = projectDto.getParentProjectId();
+        //   this.description = projectDto.getDescription();
     }
 
     public String getId() {
         return id;
     }
 
-    public String getParentProjectId() {
-        return parentProjectId;
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @XmlAttribute
     public void setId(String id) {
         this.id = id;
     }
+
     @XmlAttribute
-    public void setParentProjectId(String parentProjectId) {
-        this.parentProjectId = parentProjectId;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     @XmlAttribute
@@ -48,17 +69,6 @@ public class Project {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-//    public List<Project> getChildProjects() {
-//        return childProjectIds.stream().map(context::getProject).collect(Collectors.toList());
-//    }
-//
-//    public List<BuildType> getChildBuildTypes() {
-//        return childBuildTypeIds.stream().map(context::getBuildType).collect(Collectors.toList());
-//    }
 
     void setChildProjectIds(List<String> childProjectIds) {
         this.childProjectIds = childProjectIds;

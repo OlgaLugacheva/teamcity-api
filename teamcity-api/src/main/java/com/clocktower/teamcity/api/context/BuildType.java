@@ -2,6 +2,8 @@ package com.clocktower.teamcity.api.context;
 
 import com.clocktower.teamcity.api.context.impl.response.BuildTypeDto;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 public class BuildType {
 //    private final Context context;
 
@@ -35,10 +37,13 @@ public class BuildType {
     public String getName() {
         return name;
     }
+
+    @XmlAttribute
     public void setName(String name) {
         this.name = name;
     }
 
+    @XmlAttribute
     public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
@@ -59,6 +64,7 @@ public class BuildType {
         this.template = template;
     }
 
+    @XmlAttribute
     public void setId(String id) {
 
         this.id = id;
