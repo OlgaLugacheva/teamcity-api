@@ -6,13 +6,13 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetProjectsResponseDto {
-    private List<ProjectDto> project;
+    private List<Project> project;
 
-    public List<ProjectDto> getProject() {
+    public List<Project> getProject() {
         return project;
     }
 
-    public void setProject(List<ProjectDto> project) {
+    public void setProject(List<Project> project) {
         this.project = project;
     }
 }

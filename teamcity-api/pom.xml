@@ -18,7 +18,7 @@
     </build>
     <packaging>jar</packaging>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <projectDto.build.sourceEncoding>UTF-8</projectDto.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>

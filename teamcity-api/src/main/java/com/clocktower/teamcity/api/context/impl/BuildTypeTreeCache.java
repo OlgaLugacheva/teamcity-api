@@ -1,7 +1,7 @@
 package com.clocktower.teamcity.api.context.impl;
 
-import com.clocktower.teamcity.api.context.BuildType;
-import com.clocktower.teamcity.api.context.Project;
+import com.clocktower.teamcity.api.context.impl.response.BuildType;
+import com.clocktower.teamcity.api.context.impl.response.Project;
 
 import java.util.List;
 import java.util.Map;

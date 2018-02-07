@@ -6,13 +6,13 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetBuildTypesResponseDto {
-    private List<BuildTypeDto> buildType;
+    private List<BuildType> buildType;
 
-    public List<BuildTypeDto> getBuildType() {
+    public List<BuildType> getBuildType() {
         return buildType;
     }
 
-    public void setBuildType(List<BuildTypeDto> buildType) {
+    public void setBuildType(List<BuildType> buildType) {
         this.buildType = buildType;
     }
 }

@@ -1,4 +1,7 @@
 package com.clocktower.teamcity.api.context;
+import com.clocktower.teamcity.api.context.impl.dto.BuildTypeDto;
+import com.clocktower.teamcity.api.context.impl.dto.ProjectDto;
+import com.clocktower.teamcity.api.context.impl.dto.TemplateDto;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -28,29 +31,29 @@ public class BuildTest {
         }
         Document doc = dBuilder.newDocument();
 
-        BuildType buildType = new BuildType();
-        buildType.setName("MyBuildName");
-        buildType.setId("MyBuildID");
-        buildType.setProjectId("Etp_LugachevaOlga_InstallerTest");
+        BuildTypeDto buildTypeDto = new BuildTypeDto();
+        buildTypeDto.setName("MyBuildName");
+        buildTypeDto.setId("MyBuildID");
+        buildTypeDto.setProjectId("Etp_LugachevaOlga_InstallerTest");
 
-        Project project = new Project();
-        project.setId(buildType.getProjectId());
-        project.setName("Installer_test");
-        project.setParentProjectId("TheProjectParent");
-        buildType.setProject(project);
+        ProjectDto projectDto = new ProjectDto();
+        projectDto.setId(buildTypeDto.getProjectId());
+        projectDto.setName("Installer_test");
+        projectDto.setParentProjectId("TheProjectParent");
+        buildTypeDto.setProjectDto(projectDto);
 
-        Template template = new Template();
-        template.setId("Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7");
-        template.setName("RS_Prepare_Install_RHEL7");
-        template.setProjectName(project.getName());
-        template.setTemplateFlag(true);
-        template.setProjectId(project.getId());
+        TemplateDto templateDto = new TemplateDto();
+        templateDto.setId("Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7");
+        templateDto.setName("RS_Prepare_Install_RHEL7");
+        templateDto.setProjectName(projectDto.getName());
+        templateDto.setTemplateFlag(true);
+        templateDto.setProjectId(projectDto.getId());
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(BuildType.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(BuildTypeDto.class);
 
         Marshaller marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        JAXBElement<BuildType> jaxbElement = new JAXBElement<BuildType>(new QName(null, "buildType"), BuildType.class, buildType);
+        JAXBElement<BuildTypeDto> jaxbElement = new JAXBElement<BuildTypeDto>(new QName(null, "buildTypeDto"), BuildTypeDto.class, buildTypeDto);
         marshaller.marshal(jaxbElement, System.out);
         marshaller.marshal(jaxbElement, doc);
 
@@ -63,8 +66,8 @@ public class BuildTest {
                     .header("Cache-Control", "no-cache")
                     .header("Postman-Token", "7ec62f65-4a91-7cea-6396-d0dba25059ac")
 
-                    .body("<buildType id=\"MyBuildID\" name=\"MyBuildName\" projectId=\"Etp_LugachevaOlga_InstallerTest\" >\r\n    <project id=\"Etp_LugachevaOlga_InstallerTest\" name=\"Installer_test\" parentProjectId=\"TheProjectParent\" href=\"TheProjectHREFValue\" webUrl=\"TheWebURLOfTheProejct\"\r\n    />\r\n    <template id=\"Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7\" name=\"RS_Prepare_Install_RHEL7\" templateFlag=\"true\" projectName=\"Installer_test\" projectId=\"Etp_LugachevaOlga_InstallerTest\" href=\"TemplateHRef\" />\r\n    <vcs-root-entries>\r\n        <!--vcs-root-entry elements are not necessary-->\r\n    </vcs-root-entries>\r\n    <settings>          \r\n    </settings>\r\n    <parameters> \r\n    </parameters>\r\n    <steps>\r\n    </steps>\r\n    <features>\r\n    </features>\r\n    <triggers>\r\n    </triggers>\r\n    <snapshot-dependencies/>\r\n    <artifact-dependencies/>\r\n    <agent-requirements/>\r\n    <builds href=\"BuildConfigurationHREF\" />\r\n</buildType>")
-                   // .body("<buildType id=\"MyBuildID\" name=\"MyBuildName\" projectId=\"Etp_LugachevaOlga_InstallerTest\" >\r\n    <project id=\"Etp_LugachevaOlga_InstallerTest\" name=\"Installer_test\" parentProjectId=\"TheProjectParent\" href=\"TheProjectHREFValue\" webUrl=\"TheWebURLOfTheProejct\"\r\n    />\r\n    <template id=\"Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7\" name=\"RS_Prepare_Install_RHEL7\" templateFlag=\"true\" projectName=\"Installer_test\" projectId=\"Etp_LugachevaOlga_InstallerTest\" href=\"TemplateHRef\" />\r\n    <vcs-root-entries>\r\n        <!--vcs-root-entry elements are not necessary-->\r\n    </vcs-root-entries>\r\n    <settings>          \r\n    </settings>\r\n    <parameters> \r\n    </parameters>\r\n    <steps>\r\n    </steps>\r\n    <features>\r\n    </features>\r\n    <triggers>\r\n    </triggers>\r\n    <snapshot-dependencies/>\r\n    <artifact-dependencies/>\r\n    <agent-requirements/>\r\n    <builds href=\"BuildConfigurationHREF\" />\r\n</buildType>")
+                    .body("<buildTypeDto id=\"MyBuildID\" name=\"MyBuildName\" projectId=\"Etp_LugachevaOlga_InstallerTest\" >\r\n    <projectDto id=\"Etp_LugachevaOlga_InstallerTest\" name=\"Installer_test\" parentProjectId=\"TheProjectParent\" href=\"TheProjectHREFValue\" webUrl=\"TheWebURLOfTheProejct\"\r\n    />\r\n    <templateDto id=\"Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7\" name=\"RS_Prepare_Install_RHEL7\" templateFlag=\"true\" projectName=\"Installer_test\" projectId=\"Etp_LugachevaOlga_InstallerTest\" href=\"TemplateHRef\" />\r\n    <vcs-root-entries>\r\n        <!--vcs-root-entry elements are not necessary-->\r\n    </vcs-root-entries>\r\n    <settings>          \r\n    </settings>\r\n    <parameters> \r\n    </parameters>\r\n    <steps>\r\n    </steps>\r\n    <features>\r\n    </features>\r\n    <triggers>\r\n    </triggers>\r\n    <snapshot-dependencies/>\r\n    <artifact-dependencies/>\r\n    <agent-requirements/>\r\n    <builds href=\"BuildConfigurationHREF\" />\r\n</buildTypeDto>")
+                   // .body("<buildTypeDto id=\"MyBuildID\" name=\"MyBuildName\" projectId=\"Etp_LugachevaOlga_InstallerTest\" >\r\n    <projectDto id=\"Etp_LugachevaOlga_InstallerTest\" name=\"Installer_test\" parentProjectId=\"TheProjectParent\" href=\"TheProjectHREFValue\" webUrl=\"TheWebURLOfTheProejct\"\r\n    />\r\n    <templateDto id=\"Etp_LugachevaOlga_InstallerTest_RsPrepareInstallRhel7\" name=\"RS_Prepare_Install_RHEL7\" templateFlag=\"true\" projectName=\"Installer_test\" projectId=\"Etp_LugachevaOlga_InstallerTest\" href=\"TemplateHRef\" />\r\n    <vcs-root-entries>\r\n        <!--vcs-root-entry elements are not necessary-->\r\n    </vcs-root-entries>\r\n    <settings>          \r\n    </settings>\r\n    <parameters> \r\n    </parameters>\r\n    <steps>\r\n    </steps>\r\n    <features>\r\n    </features>\r\n    <triggers>\r\n    </triggers>\r\n    <snapshot-dependencies/>\r\n    <artifact-dependencies/>\r\n    <agent-requirements/>\r\n    <builds href=\"BuildConfigurationHREF\" />\r\n</buildTypeDto>")
                     .asString();
         } catch (UnirestException e) {
             e.printStackTrace();
